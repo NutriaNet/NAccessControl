@@ -36,4 +36,32 @@ public class DbContextTest
 
         Assert.Equal(found.UserId, userId);
     }
+
+    [Fact]
+    public void TestUserIdIsEmpty()
+    {
+        var loggerFactory = LoggerFactory.Create(c => c.AddDebug());
+        var options = new DbContextOptionsBuilder<AccessControlDbContext>()
+            .EnableSensitiveDataLogging()
+            .UseLoggerFactory(loggerFactory)
+            .UseInMemoryDatabase(databaseName: "TestDatabase")
+            .Options;
+
+
+        using var dbContext = new AccessControlDbContext(options);
+
+        var userId = new UserId("1");
+        var ownedResource = new OwnedResource()
+        {
+        };
+
+        dbContext.OwnedResources.Add(ownedResource);
+        dbContext.SaveChanges();
+
+        var found = dbContext
+            .OwnedResources
+            .Single(or => or.Id == ownedResource.Id);
+
+        Assert.Equal(1, ownedResource.Id);
+    }
 }
