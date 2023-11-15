@@ -2,24 +2,24 @@
 using Microsoft.Extensions.Logging;
 using NAccessControl.Domain.Model;
 using NAccessControl.EFCore.Infrastructures.EntityFrameworks;
+using NAccessControl.Test.Fixtures;
 
 namespace NAccessControl.Test;
 
-public class DbContextTest
+public class DbContextTest : IClassFixture<DatabaseFixture>
 {
+    protected DatabaseFixture fixture;
+
+    public DbContextTest(DatabaseFixture fixture)
+    {
+        this.fixture = fixture;
+    }
+
     [Fact]
     public void TestDbContext()
     {
 
-        var loggerFactory = LoggerFactory.Create(c => c.AddDebug());
-        var options = new DbContextOptionsBuilder<AccessControlDbContext>()
-            .EnableSensitiveDataLogging()
-            .UseLoggerFactory(loggerFactory)
-            .UseInMemoryDatabase(databaseName: "TestDatabase")
-            .Options;
-
-
-        using var dbContext = new AccessControlDbContext(options);
+        var dbContext = this.fixture.CreateDbContext();
 
         var userId = new UserId("1");
         var ownedResource = new OwnedResource()

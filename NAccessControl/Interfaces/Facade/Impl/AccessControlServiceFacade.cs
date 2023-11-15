@@ -33,7 +33,7 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
 
     public IEnumerable<Resource> FindAllResources()
     {
-        return _resourceRepository.FindAllResourceAsync();
+        throw new NotImplementedException();
     }
 
     public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)

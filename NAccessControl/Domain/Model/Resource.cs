@@ -17,6 +17,8 @@ public class Resource
 
     public ICollection<Permission> Permissions { get; set; }
 
+    public Resource() { }
+
     public Resource(string key, string name, ICollection<Permission> permissions)
     {
         Key = key;
