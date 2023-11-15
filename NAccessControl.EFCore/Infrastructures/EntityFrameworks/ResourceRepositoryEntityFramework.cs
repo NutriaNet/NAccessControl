@@ -14,10 +14,12 @@ public class ResourceRepositoryEntityFramework : IResourceRepository
 
     public void Add(Resource resource)
     {
-        throw new NotImplementedException();
+        dbContext.Resources.Add(resource);
     }
 
-    public async Task<IEnumerable<Resource>> FindAllResourceAsync() =>
+    public void AddRange(IEnumerable<Resource> resources) => dbContext.Resources.AddRange(resources);
+
+    public async Task<IEnumerable<Resource>> FindAllResourcesAsync() =>
         await dbContext
             .Resources
             .Include(r => r.Permissions)

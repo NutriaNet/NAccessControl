@@ -1,34 +1,29 @@
 ﻿using NAccessControl.Domain.Model;
 using NAccessControl.EFCore.Infrastructures.EntityFrameworks;
+using NAccessControl.Test.Fixtures;
 
 namespace NAccessControl.Test;
 
-public class AccessControlTest
+public class AccessControlTest : IClassFixture<DatabaseFixture>
 {
+    protected DatabaseFixture fixture;
+
+    public AccessControlTest(DatabaseFixture fixture)
+    {
+        this.fixture = fixture;
+    }
+
     [Fact]
     public async Task TestInitializeResouceAndAndPromission()
     {
-        var read = new Permission("Read", "Read");
-        var edit = new Permission("Edit", "Edit");
-        var readData = new Permission("ReadData", "Read data");
-        var editData = new Permission("EditData", "Edit data");
-        var use = new Permission("User", "User");
+        IResourceRepository repository = new ResourceRepositoryEntityFramework(fixture.CreateDbContext());
 
-        var allTablePermissions = new List<Permission>() { read, edit };
-
-        var contract = new Resource("ContractTable", "Contract", allTablePermissions);
-
-        var name = new Resource("NameColumn", "Contract name", allTablePermissions);
-
-        contract.AddChild(name);
-
-        IResourceRepository repository = new ResourceRepositoryEntityFramework(null);
-
-        repository.Add(contract);
-        repository.Add(name);
+        repository.AddRange(fixture.CreateContractTableResource());
         await repository.SaveChangesAsync();
 
-        var resources = await repository.FindAllResourceAsync();
+        var resources = await repository.FindAllResourcesAsync();
+
+        Assert.Contains(resources, r => r.Key == "ContractTable");
     }
 
     [Fact]
