@@ -2,4 +2,7 @@
 
 public interface IUserId
 {
+    int ToInt();
+
+    Guid ToGUID();
 }

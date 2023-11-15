@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NAccessControl.Domain.Model;
+﻿namespace NAccessControl.Domain.Model;
 
 public class Resource
 {
+    public int Id { get; set; }
+
     public IList<Permission> Permissions { get; set; }
 }

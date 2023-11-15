@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAccessControl.CA", "NAccessControl.CA\NAccessControl.CA.csproj", "{452C82A2-0C62-4610-9283-D001F1A19867}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NAccessControl.CA", "NAccessControl.CA\NAccessControl.CA.csproj", "{452C82A2-0C62-4610-9283-D001F1A19867}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAccessControl", "NAccessControl\NAccessControl.csproj", "{C71B2086-6ED5-46D1-B163-57A5E9A39A84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NAccessControl", "NAccessControl\NAccessControl.csproj", "{C71B2086-6ED5-46D1-B163-57A5E9A39A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAccessControl.Test", "NAccessControl.Test\NAccessControl.Test.csproj", "{C8BAC611-ADB8-4955-BA12-F28CB89F7CE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAccessControl.EFCore", "NAccessControl.EFCore\NAccessControl.EFCore.csproj", "{80F48C8F-AA62-4695-925F-07E0FF635094}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAccessControl.Test", "NAccessControl.Test\NAccessControl.Test.csproj", "{81D55424-0C22-4124-8A9D-89202E25D85C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,14 @@ Global
 		{C71B2086-6ED5-46D1-B163-57A5E9A39A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71B2086-6ED5-46D1-B163-57A5E9A39A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71B2086-6ED5-46D1-B163-57A5E9A39A84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8BAC611-ADB8-4955-BA12-F28CB89F7CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8BAC611-ADB8-4955-BA12-F28CB89F7CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8BAC611-ADB8-4955-BA12-F28CB89F7CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8BAC611-ADB8-4955-BA12-F28CB89F7CE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F48C8F-AA62-4695-925F-07E0FF635094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F48C8F-AA62-4695-925F-07E0FF635094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F48C8F-AA62-4695-925F-07E0FF635094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F48C8F-AA62-4695-925F-07E0FF635094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D55424-0C22-4124-8A9D-89202E25D85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D55424-0C22-4124-8A9D-89202E25D85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D55424-0C22-4124-8A9D-89202E25D85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D55424-0C22-4124-8A9D-89202E25D85C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
