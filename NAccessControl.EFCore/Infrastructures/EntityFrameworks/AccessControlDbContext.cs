@@ -7,6 +7,8 @@ public class AccessControlDbContext : DbContext
 {
     public DbSet<OwnedResource> OwnedResources { get; set; }
 
+    public DbSet<Resource> Resources { get; set; }
+
     public AccessControlDbContext(DbContextOptions options) : base(options)
     {
 

@@ -2,7 +2,12 @@
 
 public interface IResourceRepository
 {
-    public IEnumerable<Resource> FindAllResource();
+
+    void Add(Resource resource);
+
+    Task<int> SaveChangesAsync();
+
+    Task<IEnumerable<Resource>> FindAllResourceAsync();
 
     public IEnumerable<OwnedResource> FindOwnedResources(IUserId user);
 }
