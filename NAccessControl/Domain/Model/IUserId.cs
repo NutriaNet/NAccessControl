@@ -4,5 +4,5 @@ public interface IUserId
 {
     int ToInt();
 
-    Guid ToGUID();
+    Guid? ToGuid();
 }

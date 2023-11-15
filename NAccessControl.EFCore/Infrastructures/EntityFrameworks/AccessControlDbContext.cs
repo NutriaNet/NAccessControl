@@ -17,7 +17,7 @@ public class AccessControlDbContext : DbContext
         modelBuilder.Entity<OwnedResource>()
            .Property(e => e.UserId)
            .HasConversion(
-                v => v.ToInt(),
+                v => v.ToString(),
                 v => new UserId(v)
             );
     }

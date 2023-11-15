@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NAccessControl.Domain.Model;
 using NAccessControl.EFCore.Infrastructures.EntityFrameworks;
 
@@ -9,16 +10,30 @@ public class DbContextTest
     [Fact]
     public void TestDbContext()
     {
+
+        var loggerFactory = LoggerFactory.Create(c => c.AddDebug());
         var options = new DbContextOptionsBuilder<AccessControlDbContext>()
-        .UseInMemoryDatabase(databaseName: "TestDatabase")
-        .Options;
+            .EnableSensitiveDataLogging()
+            .UseLoggerFactory(loggerFactory)
+            .UseInMemoryDatabase(databaseName: "TestDatabase")
+            .Options;
+
 
         using var dbContext = new AccessControlDbContext(options);
 
-        var ownedResource = new OwnedResource();
+        var userId = new UserId("1");
+        var ownedResource = new OwnedResource()
+        {
+            UserId = userId
+        };
+
         dbContext.OwnedResources.Add(ownedResource);
         dbContext.SaveChanges();
 
-        var found = dbContext.OwnedResources.ToList();
+        var found = dbContext
+            .OwnedResources
+            .Single(or => or.UserId.GuidValueId == userId.GuidValueId);
+
+        Assert.Equal(found.UserId, userId);
     }
 }
