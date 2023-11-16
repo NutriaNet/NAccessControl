@@ -12,6 +12,8 @@ public class Resource
 
     public int ParentId { get; set; }
 
+    public string ParentKey { get; set; }
+
     [NotMapped]
     public ICollection<Resource> Children { get; }
 
