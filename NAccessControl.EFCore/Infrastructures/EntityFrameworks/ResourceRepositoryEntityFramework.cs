@@ -40,6 +40,16 @@ public class ResourceRepositoryEntityFramework : IResourceRepository
         throw new NotImplementedException();
     }
 
+    public Task<IEnumerable<OwnedResource>> FindAllOwnedResourcesAsync(Role role)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<OwnedResource>> FindOwnedResourcesAsync(Role role, string parentKey)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<int> SaveChangesAsync()
     {
         return dbContext.SaveChangesAsync();

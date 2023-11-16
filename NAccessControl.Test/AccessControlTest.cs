@@ -45,6 +45,11 @@ public class AccessControlTest : IClassFixture<DatabaseFixture>
     }
 
     [Fact]
+    public void ShouldRemoveUserOwnershipOfResourceIfNotSubmitted()
+    {
+    }
+
+    [Fact]
     public void TestGetOwnedResources()
     {
 
