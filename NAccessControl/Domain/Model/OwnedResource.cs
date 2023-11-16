@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace NAccessControl.Domain.Model;
+﻿namespace NAccessControl.Domain.Model;
 
 public class OwnedResource
 {

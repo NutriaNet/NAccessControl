@@ -17,7 +17,17 @@ public class ResourceRepositoryEntityFramework : IResourceRepository
         dbContext.Resources.Add(resource);
     }
 
+    public Task AddAsync(Resource resource)
+    {
+        throw new NotImplementedException();
+    }
+
     public void AddRange(IEnumerable<Resource> resources) => dbContext.Resources.AddRange(resources);
+
+    public void AddRangeAsync(IEnumerable<Resource> resources)
+    {
+        throw new NotImplementedException();
+    }
 
     public async Task<IEnumerable<Resource>> FindAllResourcesAsync() =>
         await dbContext
@@ -33,5 +43,10 @@ public class ResourceRepositoryEntityFramework : IResourceRepository
     public Task<int> SaveChangesAsync()
     {
         return dbContext.SaveChangesAsync();
+    }
+
+    Task IRepository<Resource>.AddRangeAsync(IEnumerable<Resource> permissions)
+    {
+        throw new NotImplementedException();
     }
 }
