@@ -33,5 +33,14 @@ public class Resource
     {
         Children.Add(resource);
         resource.ParentId = Id;
+        resource.ParentKey = Key;
+    }
+
+    public void AddChildren(IEnumerable<Resource> children)
+    {
+        foreach (var child in children)
+        {
+            AddChild(child);
+        }
     }
 }
