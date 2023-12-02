@@ -13,6 +13,8 @@ public class UserId : IUserId
 
     public bool IsValidated { get; }
 
+    public UserId() { }
+
     public UserId(int? id)
     {
         Id = id ?? 0;
