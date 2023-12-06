@@ -28,12 +28,12 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
 
     public void CreateResources(IEnumerable<Resource> resources)
     {
-        throw new NotImplementedException();
+        _resourceRepository.AddRange(resources);
     }
 
     public IEnumerable<Resource> FindAllResources()
     {
-        throw new NotImplementedException();
+        return _resourceRepository.FindAllResourcesAsync().Result;
     }
 
     public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)
