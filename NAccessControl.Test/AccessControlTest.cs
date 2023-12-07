@@ -14,7 +14,7 @@ public class AccessControlTest : IClassFixture<DatabaseFixture>
     }
 
     [Fact]
-    public async Task TestInitializeResouceAndAndPromission()
+    public async Task TestInitializeResourceAndAndPermission()
     {
         IResourceRepository repository = new ResourceRepositoryEntityFramework(fixture.CreateDbContext());
 
