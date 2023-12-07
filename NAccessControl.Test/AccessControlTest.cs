@@ -1,6 +1,7 @@
 ﻿using NAccessControl.Domain.Model;
 using NAccessControl.EFCore.Infrastructures.EntityFrameworks;
 using NAccessControl.Test.Fixtures;
+using System.Resources;
 
 namespace NAccessControl.Test;
 
@@ -50,8 +51,25 @@ public class AccessControlTest : IClassFixture<DatabaseFixture>
     }
 
     [Fact]
-    public void TestGetOwnedResources()
+    public async void TestGetOwnedResources()
     {
+        IResourceRepository repository = new ResourceRepositoryEntityFramework(fixture.CreateDbContext()); 
 
+        var resources = await repository.FindAllResourcesAsync();
+
+        Assert.NotNull(resources);
     }
+
+    [Fact]
+    public async void TestCreateResources()
+    {
+        IResourceRepository repository = new ResourceRepositoryEntityFramework(fixture.CreateDbContext());
+
+        repository.Add(fixture.CreateContractTableResource().First());
+        await repository.SaveChangesAsync();
+
+        var resources = await repository.FindAllResourcesAsync();
+        Assert.Contains(resources, r => r.Key == "ContractTable");
+    }
+    
 }
