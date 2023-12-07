@@ -10,9 +10,9 @@ public class Resource
 
     public string Name { get; set; }
 
-    public int ParentId { get; set; }
+    public int? ParentId { get; set; }
 
-    public string ParentKey { get; set; }
+    public string? ParentKey { get; set; }
 
     [NotMapped]
     public ICollection<Resource> Children { get; }
