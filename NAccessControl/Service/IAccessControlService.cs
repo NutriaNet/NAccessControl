@@ -17,7 +17,7 @@ namespace NAccessControl.Service
 
         OwnedResource AssignResourcesToRole(Role role, IEnumerable<Resource> resources);
 
-        IEnumerable<Resource> FindAllResources();
+        Task<IEnumerable<Resource>> FindAllResourcesAsync();
 
         IEnumerable<OwnedResource> FindOwnedResources(IUserId user);
     }

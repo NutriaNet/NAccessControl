@@ -36,9 +36,9 @@ namespace NAccessControl.Service.Impl
             _resourceRepository.AddRange(resources);
         }
 
-        public IEnumerable<Resource> FindAllResources()
+        public async Task<IEnumerable<Resource>> FindAllResourcesAsync()
         {
-            return _resourceRepository.FindAllResourcesAsync().Result;
+            return await _resourceRepository.FindAllResourcesAsync();
         }
 
         public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)

@@ -11,6 +11,11 @@ namespace NAccessControl.Interfaces.Facade.Assembler
 {
     public class ResourceAssember
     {
+        private readonly PermissionAssember _permissionAssember;
+        public ResourceAssember(PermissionAssember permissionAssember)
+        {
+            this._permissionAssember = permissionAssember;
+        }
         public Resource CreateCommandToEntity(CreateResourceCommand command)
         {
             return new Resource
@@ -36,6 +41,7 @@ namespace NAccessControl.Interfaces.Facade.Assembler
                 Key = command.Key,
                 Name = command.Name,
                 ParentKey = command.ParentKey,
+                Permissions = _permissionAssember.EntityToDTO(command.Permissions),
             };
         }
 

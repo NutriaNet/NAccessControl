@@ -37,9 +37,9 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
         _accessControlService.CreateResources(_resourceAssember.CreateCommandToEntity(resources));
     }
 
-    public IEnumerable<ResourceDTO> FindAllResources()
+    public async Task<IEnumerable<ResourceDTO>> FindAllResourcesAsync()
     {
-        return _resourceAssember.EntityToDTO(_accessControlService.FindAllResources());
+        return _resourceAssember.EntityToDTO(await _accessControlService.FindAllResourcesAsync());
     }
 
     public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)

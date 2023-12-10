@@ -14,7 +14,7 @@ public interface IAccessControlServiceFacade
 
     OwnedResource AssignResourcesToRole(Role role, IEnumerable<Resource> resources);
 
-    IEnumerable<ResourceDTO> FindAllResources();
+    Task<IEnumerable<ResourceDTO>> FindAllResourcesAsync();
 
     IEnumerable<OwnedResource> FindOwnedResources(IUserId user);
 }
