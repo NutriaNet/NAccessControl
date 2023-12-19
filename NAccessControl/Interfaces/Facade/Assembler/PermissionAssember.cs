@@ -14,15 +14,20 @@ namespace NAccessControl.Interfaces.Facade.Assembler
         {
             return new PermissionDTO
             {
-                Id = command.Id, 
+                Id = command.Id,
                 Key = command.Key,
-                Name = command.Name 
+                Name = command.Name
             };
         }
 
         public IEnumerable<PermissionDTO> EntityToDTO(IEnumerable<Permission> resources)
         {
             return resources.Select(c => this.EntityToDTO(c));
+        }
+
+        public IEnumerable<PermissionDTO> EntityToDTO(ICollection<Permission> resources)
+        {
+            return this.EntityToDTO(resources.AsEnumerable());
         }
     }
 }

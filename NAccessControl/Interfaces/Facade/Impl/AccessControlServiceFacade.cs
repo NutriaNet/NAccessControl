@@ -3,6 +3,7 @@ using NAccessControl.Interfaces.Facade.Assembler;
 using NAccessControl.Interfaces.Facade.Command;
 using NAccessControl.Interfaces.Facade.Dto;
 using NAccessControl.Service;
+using System.Collections.Generic;
 
 namespace NAccessControl.Interfaces.Facade.Impl;
 
@@ -10,11 +11,18 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
 {
     private readonly IAccessControlService _accessControlService;
     private readonly ResourceAssember _resourceAssember;
+    private readonly OwnedResourceAssembler _ownedResourceAssembler;
+    private readonly UserIdAssembler userIdAssembler;
 
-    public AccessControlServiceFacade(IAccessControlService _accessControlService, ResourceAssember _resourceAssember)
+    public AccessControlServiceFacade(IAccessControlService _accessControlService,
+        ResourceAssember _resourceAssember,
+        OwnedResourceAssembler ownedResourceAssembler,
+        UserIdAssembler userIdAssembler)
     {
         this._accessControlService = _accessControlService;
         this._resourceAssember = _resourceAssember;
+        this._ownedResourceAssembler = ownedResourceAssembler;
+        this.userIdAssembler = userIdAssembler;
     }
 
     public void AssignPermissionsToResource(Resource resource, IEnumerable<Permission> permissions)
@@ -22,7 +30,7 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
         throw new NotImplementedException();
     }
 
-    public OwnedResource AssignResourcesToRole(Role role, IEnumerable<Resource> resources)
+    public OwnedResourceDTO AssignResourcesToRole(Role role, IEnumerable<Resource> resources)
     {
         throw new NotImplementedException();
     }
@@ -42,8 +50,8 @@ public class AccessControlServiceFacade : IAccessControlServiceFacade
         return _resourceAssember.EntityToDTO(await _accessControlService.FindAllResourcesAsync());
     }
 
-    public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)
+    public async Task<IEnumerable<OwnedResourceDTO>> FindOwnedResourcesAsync(FindOwnedResourcesCommand command)
     {
-        return _accessControlService.FindOwnedResources(user);
+        return _ownedResourceAssembler.EntityToDTO(await _accessControlService.FindOwnedResourcesAsync(this.userIdAssembler.ToEntity(command)));
     }
 }

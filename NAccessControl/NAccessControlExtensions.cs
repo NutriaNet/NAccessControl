@@ -20,6 +20,9 @@ namespace NAccessControl
             services.AddScoped<IAccessControlServiceFacade, AccessControlServiceFacade>();
             services.AddScoped<PermissionAssember>();
             services.AddScoped<ResourceAssember>();
+            services.AddScoped<OwnedResourceAssembler>();
+            services.AddScoped<UserIdAssembler>();
+            services.AddScoped<RoleAssembler>(); 
             return services;
         }
     }

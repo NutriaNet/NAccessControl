@@ -41,9 +41,9 @@ namespace NAccessControl.Service.Impl
             return await _resourceRepository.FindAllResourcesAsync();
         }
 
-        public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)
+        public async Task<IEnumerable<OwnedResource>> FindOwnedResourcesAsync(IUserId user)
         {
-            return _resourceRepository.FindOwnedResources(user);
+            return await _resourceRepository.FindOwnedResourcesAsync(user);
         }
     }
 }

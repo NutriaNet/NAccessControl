@@ -19,6 +19,6 @@ namespace NAccessControl.Service
 
         Task<IEnumerable<Resource>> FindAllResourcesAsync();
 
-        IEnumerable<OwnedResource> FindOwnedResources(IUserId user);
+        Task<IEnumerable<OwnedResource>> FindOwnedResourcesAsync(IUserId user);
     }
 }

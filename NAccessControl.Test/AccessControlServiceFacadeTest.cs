@@ -25,13 +25,23 @@ namespace NAccessControl.Test
             IAccessControlService service = new AccessControlService(repository);
             PermissionAssember permissionAssember = new PermissionAssember();
             ResourceAssember resourceAssember = new ResourceAssember(permissionAssember);
-            facade = new AccessControlServiceFacade(service, resourceAssember);
+            RoleAssembler roleAssembler = new RoleAssembler();
+            OwnedResourceAssembler ownedResourceAssembler = new OwnedResourceAssembler(resourceAssember, permissionAssember, roleAssembler);
+            UserIdAssembler userIdAssembler = new UserIdAssembler();
+            facade = new AccessControlServiceFacade(service, resourceAssember, ownedResourceAssembler, userIdAssembler);
         }
 
         [Fact]
         public async void TestCreateResources()
         {
             var resources = await facade.FindAllResourcesAsync();
+        }
+
+        [Fact]
+        public async void TestFindOwnedResourcesAsync()
+        {
+            var resources = await facade.FindOwnedResourcesAsync(new Interfaces.Facade.Command.FindOwnedResourcesCommand() { UserId = 1 });
+            //Assert.True(resources.Any()); 
         }
     }
 }

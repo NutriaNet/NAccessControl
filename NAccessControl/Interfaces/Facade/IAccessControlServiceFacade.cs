@@ -12,9 +12,9 @@ public interface IAccessControlServiceFacade
 
     void AssignPermissionsToResource(Resource resource, IEnumerable<Permission> permissions);
 
-    OwnedResource AssignResourcesToRole(Role role, IEnumerable<Resource> resources);
+    OwnedResourceDTO AssignResourcesToRole(Role role, IEnumerable<Resource> resources);
 
     Task<IEnumerable<ResourceDTO>> FindAllResourcesAsync();
 
-    IEnumerable<OwnedResource> FindOwnedResources(IUserId user);
+    Task<IEnumerable<OwnedResourceDTO>> FindOwnedResourcesAsync(FindOwnedResourcesCommand command);
 }

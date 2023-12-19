@@ -35,9 +35,16 @@ public class ResourceRepositoryEntityFramework : IResourceRepository
             .Include(r => r.Permissions)
             .ToListAsync();
 
-    public IEnumerable<OwnedResource> FindOwnedResources(IUserId user)
+    public async Task<IEnumerable<OwnedResource>> FindOwnedResourcesAsync(IUserId user)
     {
-        throw new NotImplementedException();
+        return await this.dbContext
+             .OwnedResources
+             .Include(r => r.UserId)
+             .Include(r => r.Role)
+             .Include(r => r.Resource)
+             .Include(r => r.Permissions)
+             .Where(c => c.UserId == user)
+             .ToListAsync();
     }
 
     public Task<IEnumerable<OwnedResource>> FindAllOwnedResourcesAsync(Role role)
