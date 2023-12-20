@@ -40,7 +40,7 @@ namespace NAccessControl.Test
         [Fact]
         public async void TestFindOwnedResourcesAsync()
         {
-            var resources = await facade.FindOwnedResourcesAsync(new Interfaces.Facade.Command.FindOwnedResourcesCommand() { UserId = 1 });
+            var resources = await facade.FindOwnedResourcesAsync(new Interfaces.Facade.Command.FindOwnedResourcesCommand() { UserId = "1" });
             //Assert.True(resources.Any()); 
         }
     }
